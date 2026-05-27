@@ -62,16 +62,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     const manifest = JSON.parse(manifestEl.textContent);
-    // 外部アセット（動画）を非同期ロードしてマージ
-    try {
-      const _extResp = await fetch('assets-video.json');
-      if (_extResp.ok) {
-        const _extAssets = await _extResp.json();
-        Object.assign(manifest, _extAssets);
-      }
-    } catch(_e) {
-      console.warn('[bundler] Could not load external assets:', _e);
-    }
     let template = JSON.parse(templateEl.textContent);
 
     const uuids = Object.keys(manifest);
